@@ -1,4 +1,4 @@
-var Shorten = require('../lib');
+var Shorten = require('../Shorten');
 
 console.log(Shorten.id(10000));
 console.log(Shorten.id(10001));

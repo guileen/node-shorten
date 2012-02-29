@@ -1,11 +1,15 @@
 var MAP_64 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-';
 
-var Shorten = module.exports = function(redisClient, prefix) {
+var Shorten = function(redisClient, prefix) {
   this.redisClient = redisClient;
   this.prefix = prefix || 'shorten';
 };
 
-var id = Shorten.id = function(value) {
+var exports = module.exports = function(redisClient, prefix) {
+  return new Shorten(redisClient, prefix);
+}
+
+var id = exports.id = function(value) {
   var quotient, remainder, result = '';
   do {
     quotient = Math.floor(value / 62);
@@ -16,7 +20,7 @@ var id = Shorten.id = function(value) {
   return result;
 };
 
-var id32 = Shorten.id32 = function(value) {
+var id32 = exports.id32 = function(value) {
   var quotient, remainder, result = '';
   do {
     quotient = value >> 5;
@@ -27,7 +31,7 @@ var id32 = Shorten.id32 = function(value) {
   return result;
 };
 
-var id64 = Shorten.id64 = function(value) {
+var id64 = exports.id64 = function(value) {
   var quotient, remainder, result = '';
   do {
     quotient = value >> 6;
@@ -80,3 +84,4 @@ Shorten.prototype = {
   }
 
 };
+

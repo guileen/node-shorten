@@ -1,5 +1,5 @@
 var redis = require('redis')
-var Shorten = require('../lib');
+var Shorten = require('../shorten');
 var redisClient = redis.createClient();
 var shorten = new Shorten(redisClient);
 
